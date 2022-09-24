@@ -5,7 +5,7 @@ const Staff = require("../models/staff");
 async function connect() {
   try {
     mongoose.connect(
-      "mongodb+srv://letoan:letoan410@cluster0.b01eqjm.mongodb.net/?retryWrites=true&w=majority"
+      "mongodb+srv://letoan:letoan410@cluster0.b01eqjm.mongodb.net/ASM1?retryWrites=true&w=majority"
     );
     console.log("Connected to MongoDB");
   } catch (err) {
