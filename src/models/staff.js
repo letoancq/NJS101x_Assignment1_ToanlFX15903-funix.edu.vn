@@ -109,4 +109,9 @@ Staff.methods.addInject = function (firstInject, secondInject) {
   return this.save();
 };
 
+Staff.methods.findById = function (id) {
+  return id;
+}
+
+
 module.exports = mongoose.model("Staff", Staff);
