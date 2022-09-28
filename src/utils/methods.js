@@ -116,7 +116,7 @@ class Methods {
     // get date leave
     staff.leaveInfoList.forEach((leaveInfo) => {
       const dateLeave = {};
-      dateLeave.dayLeave = leaveInfo.daysLeave.getDate();
+      dateLeave.dayLeave = leaveInfo.daysLeave?.getDay();
       dateLeave.timesLeave = leaveInfo.timesLeave;
       dateLeave.monthLeave = leaveInfo.daysLeave.getMonth();
 
