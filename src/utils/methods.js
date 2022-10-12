@@ -100,6 +100,26 @@ class Methods {
     return { overHour, overMin };
   };
 
+  shortTime = () => {
+    // let timesLeave;
+    // const listDayLeave = [];
+    // // get date leave
+    // staff.leaveInfoList.forEach((leaveInfo) => {
+    //   const dateLeave = {};
+    //   dateLeave.dayLeave = leaveInfo.daysLeave?.getDay();
+    //   dateLeave.timesLeave = leaveInfo.timesLeave;
+    //   dateLeave.monthLeave = leaveInfo.daysLeave.getMonth();
+    //   listDayLeave.push(dateLeave);
+    // });
+    // if (totalHourWorked + timesLeave < 8) {
+    //   shortHour = 7 - (totalHourWorked + timesLeave);
+    //   shortMin = 60 - totalMinWorked;
+    // } else {
+    //   shortHour = 0;
+    //   shortMin = 0;
+    // }
+    // return shortHour + shortMin / 60;
+  };
   getSalary = (
     month,
     staff,

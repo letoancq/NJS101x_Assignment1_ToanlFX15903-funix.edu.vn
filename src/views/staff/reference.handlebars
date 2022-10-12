@@ -64,6 +64,8 @@
             {{/each}}    
         </table>
     </div>
+
+      
     <div class="referenceStaff__wrapper">
         <h3 class="referenceStaff__title">Chi tiết Lương</h3>
         <form class="form-select-month" action="/staff/reference" method="POST">
@@ -82,10 +84,14 @@
                 <option value="11">11</option>
                 <option value="12">12</option>
             </select>
-        </form>
+            {{!-- <input type="month" name="month" id="month" onchange="this.form.submit()" class="select-month" value="2022-08"
+       min={{startDate}} >
+        </form> --}}
         <span>Tháng đang xem là: tháng {{month}} </span>
         <p class="referenceStaff__salary">
-            {{covert salary}}
+           Thực lĩnh : {{covert salary}} = 
+            Hệ số lương ( {{ salaryScale }} ) * 3000000 +
+        ( Giờ làm thêm ( {{ overHour }} : {{ overMin }} ) -  Giờ làm thiếu ({{ shortTime }}) ) * 200000
         </p>
     </div>
 </div>

@@ -32,6 +32,7 @@ class StaffController {
   // GET /staff/reference
   getReference(req, res) {
     const timeWorked = Methods.calculateTimeWorked(req.staff);
+    const shortTime = Methods.shortTime(Methods.calculateTimeWorked(req.staff));
     const workInDay = timeWorked.workTimeInDay.map((work) => {
       const endTime = work.endTime ? dateformat("hh:mm", work.endTime) : "--";
       return {
@@ -56,6 +57,7 @@ class StaffController {
         reason: leaveInfoList.reason,
       };
     });
+    console.log(shortTime);
     res.render("staff/reference", {
       path: "/staff/reference",
       pageTitle: "Reference staff",
@@ -65,7 +67,11 @@ class StaffController {
       timeWorked,
       dayLeave, // arry of info annual leave
       salary,
-      overTime,
+      shortTime, // short time
+      overTime: JSON.stringify(overTime),
+      overHour: overTime.overHour,
+      overMin: overTime.overMin,
+      salaryScale: req.staff.salaryScale,
       isStarted: Methods.CheckIsStarted(req.staff),
     });
   }
@@ -105,7 +111,11 @@ class StaffController {
       timeWorked,
       dayLeave, // arry of info annual leave
       salary,
-      overTime,
+      overTime: JSON.stringify(overTime),
+      overHour: overTime.overHour,
+      overMin: overTime.overMin,
+      salaryScale: req.staff.salaryScale,
+
       month,
       isStarted: Methods.CheckIsStarted(req.staff),
     });
