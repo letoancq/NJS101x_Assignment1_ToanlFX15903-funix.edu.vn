@@ -84,14 +84,12 @@
                 <option value="11">11</option>
                 <option value="12">12</option>
             </select>
-            {{!-- <input type="month" name="month" id="month" onchange="this.form.submit()" class="select-month" value="2022-08"
-       min={{startDate}} >
-        </form> --}}
+        </form>
         <span>Tháng đang xem là: tháng {{month}} </span>
         <p class="referenceStaff__salary">
            Thực lĩnh : {{covert salary}} = 
             Hệ số lương ( {{ salaryScale }} ) * 3000000 +
-        ( Giờ làm thêm ( {{ overHour }} : {{ overMin }} ) -  Giờ làm thiếu ({{ shortTime }}) ) * 200000
+        ( Giờ làm thêm ( {{overTime}} ) -  Giờ làm thiếu ({{ shortTime }}) ) * 200000
         </p>
     </div>
 </div>

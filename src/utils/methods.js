@@ -100,26 +100,124 @@ class Methods {
     return { overHour, overMin };
   };
 
-  shortTime = () => {
-    // let timesLeave;
-    // const listDayLeave = [];
-    // // get date leave
-    // staff.leaveInfoList.forEach((leaveInfo) => {
-    //   const dateLeave = {};
-    //   dateLeave.dayLeave = leaveInfo.daysLeave?.getDay();
-    //   dateLeave.timesLeave = leaveInfo.timesLeave;
-    //   dateLeave.monthLeave = leaveInfo.daysLeave.getMonth();
-    //   listDayLeave.push(dateLeave);
-    // });
-    // if (totalHourWorked + timesLeave < 8) {
-    //   shortHour = 7 - (totalHourWorked + timesLeave);
-    //   shortMin = 60 - totalMinWorked;
-    // } else {
-    //   shortHour = 0;
-    //   shortMin = 0;
-    // }
-    // return shortHour + shortMin / 60;
+  shortTime = ({ totalHourWorked, totalMinWorked }) => {
+    let overHour;
+    let overMin;
+    if (totalHourWorked <= 8) {
+      overHour = 8 - totalHourWorked;
+      overMin = totalMinWorked;
+    } else {
+      overHour = 0;
+      overMin = 0;
+    }
+    if (overMin > 60) {
+      overHour = overHour + 1;
+      overMin = overMin - 60;
+    } else {
+      overHour = overHour;
+      overMin = overMin;
+    }
+    return { overHour, overMin };
   };
+
+  getShortTime = (
+    month,
+    staff,
+    { totalHourWorked, totalMinWorked },
+    { overHour, overMin }
+  ) => {
+    let overTime;
+    let shortTime;
+    let timesLeave;
+    const year = 2022;
+    const lastDayOfMonth = new Date(year, month, 0).getDate();
+    const listDayLeave = [];
+
+    // get date leave
+    staff.leaveInfoList.forEach((leaveInfo) => {
+      const dateLeave = {};
+      dateLeave.dayLeave = leaveInfo.daysLeave?.getDay();
+      dateLeave.timesLeave = leaveInfo.timesLeave;
+      dateLeave.monthLeave = leaveInfo.daysLeave.getMonth();
+
+      listDayLeave.push(dateLeave);
+    });
+    // // get over time and short time;
+    for (let i = 1; i <= lastDayOfMonth; i++) {
+      let shortHour;
+      let shortMin;
+      staff.workTimes.forEach((workTime) => {
+        if (
+          workTime.startTime.getDate() == i &&
+          workTime.startTime.getMonth() + 1 == month
+        ) {
+          listDayLeave.forEach((day) => {
+            return (timesLeave = day.timesLeave);
+          });
+        }
+        if (totalHourWorked + timesLeave < 8) {
+          shortHour = 7 - (totalHourWorked + timesLeave);
+          shortMin = 60 - totalMinWorked;
+        } else {
+          shortHour = 0;
+          shortMin = 0;
+        }
+      });
+      overTime = overHour + overMin / 60;
+      shortTime = shortHour + shortMin / 60;
+    }
+    return shortTime;
+  };
+
+  getOverTime = (
+    month,
+    staff,
+    { totalHourWorked, totalMinWorked },
+    { overHour, overMin }
+  ) => {
+    let overTime;
+    let shortTime;
+    let timesLeave;
+    const year = 2022;
+    const lastDayOfMonth = new Date(year, month, 0).getDate();
+    const listDayLeave = [];
+
+    // get date leave
+    staff.leaveInfoList.forEach((leaveInfo) => {
+      const dateLeave = {};
+      dateLeave.dayLeave = leaveInfo.daysLeave?.getDay();
+      dateLeave.timesLeave = leaveInfo.timesLeave;
+      dateLeave.monthLeave = leaveInfo.daysLeave.getMonth();
+
+      listDayLeave.push(dateLeave);
+    });
+    // // get over time and short time;
+    for (let i = 1; i <= lastDayOfMonth; i++) {
+      let shortHour;
+      let shortMin;
+      staff.workTimes.forEach((workTime) => {
+        if (
+          workTime.startTime.getDate() == i &&
+          workTime.startTime.getMonth() + 1 == month
+        ) {
+          listDayLeave.forEach((day) => {
+            return (timesLeave = day.timesLeave);
+          });
+        }
+        if (totalHourWorked + timesLeave < 8) {
+          shortHour = 7 - (totalHourWorked + timesLeave);
+          shortMin = 60 - totalMinWorked;
+        } else {
+          shortHour = 0;
+          shortMin = 0;
+        }
+      });
+      overTime = overHour + overMin / 60;
+      shortTime = shortHour + shortMin / 60;
+    }
+    return overTime;
+  };
+
   getSalary = (
     month,
     staff,
