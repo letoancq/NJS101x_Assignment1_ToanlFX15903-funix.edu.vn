@@ -125,6 +125,7 @@ class StaffController {
       };
     });
     const month = req.body.month;
+    console.log(month);
     res.render("staff/reference", {
       path: "/staff/reference",
       pageTitle: "Reference staff",
@@ -134,8 +135,8 @@ class StaffController {
       dayLeave, // arry of info annual leave
       salary,
       overTime,
-      overHour: overTime.overHour,
-      overMin: overTime.overMin,
+      // overHour: overTime.overHour,
+      // overMin: overTime.overMin,
       salaryScale: req.staff.salaryScale,
       shortTime,
       month,
