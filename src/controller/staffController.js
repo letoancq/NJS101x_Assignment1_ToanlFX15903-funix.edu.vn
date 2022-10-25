@@ -39,7 +39,6 @@ class StaffController {
       Methods.calculateTimeWorked(req.staff),
       Methods.overTime(Methods.calculateTimeWorked(req.staff))
     );
-    console.log(shortTime);
     const workInDay = timeWorked.workTimeInDay.map((work) => {
       const endTime = work.endTime ? dateformat("hh:mm", work.endTime) : "--";
       return {
@@ -81,9 +80,11 @@ class StaffController {
       shortTime,
       startDate: req.staff.startDate.getMonth() + 1,
       overTime,
+
       salaryScale: req.staff.salaryScale,
       isStarted: Methods.CheckIsStarted(req.staff),
     });
+    console.log({ overTime });
   }
 
   // POST /staff/reference
@@ -142,6 +143,7 @@ class StaffController {
       month,
       isStarted: Methods.CheckIsStarted(req.staff),
     });
+    console.log(shortTime);
   }
 }
 

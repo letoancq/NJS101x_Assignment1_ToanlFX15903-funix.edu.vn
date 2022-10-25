@@ -129,8 +129,11 @@ class Methods {
     let overTime;
     let shortTime;
     let timesLeave;
-    const year = 2022;
-    const lastDayOfMonth = new Date(year, month, 0).getDate();
+    if (!month) {
+      month = new Date().getFullYear() + "-" + (new Date().getMonth() + 1);
+    }
+    const pasreMonth = month.split("-");
+    const lastDayOfMonth = new Date(pasreMonth[0], pasreMonth[1], 0).getDate();
     const listDayLeave = [];
 
     // get date leave
@@ -149,7 +152,7 @@ class Methods {
       staff.workTimes.forEach((workTime) => {
         if (
           workTime.startTime.getDate() == i &&
-          workTime.startTime.getMonth() + 1 == month
+          workTime.startTime.getMonth() + 1 == pasreMonth
         ) {
           listDayLeave.forEach((day) => {
             return (timesLeave = day.timesLeave);
@@ -178,8 +181,11 @@ class Methods {
     let overTime;
     let shortTime;
     let timesLeave;
-    const year = 2022;
-    const lastDayOfMonth = new Date(year, month, 0).getDate();
+    if (!month) {
+      month = new Date().getFullYear() + "-" + (new Date().getMonth() + 1);
+    }
+    const pasreMonth = month.split("-");
+    const lastDayOfMonth = new Date(pasreMonth[0], pasreMonth[1], 0).getDate();
     const listDayLeave = [];
 
     // get date leave
@@ -198,7 +204,7 @@ class Methods {
       staff.workTimes.forEach((workTime) => {
         if (
           workTime.startTime.getDate() == i &&
-          workTime.startTime.getMonth() + 1 == month
+          workTime.startTime.getMonth() + 1 == pasreMonth
         ) {
           listDayLeave.forEach((day) => {
             return (timesLeave = day.timesLeave);
@@ -224,11 +230,15 @@ class Methods {
     { totalHourWorked, totalMinWorked },
     { overHour, overMin }
   ) => {
+    console.log({ month });
+    if (!month) {
+      month = new Date().getFullYear() + "-" + (new Date().getMonth() + 1);
+    }
     let overTime;
     let shortTime;
     let timesLeave;
-    const year = 2022;
-    const lastDayOfMonth = new Date(year, month, 0).getDate();
+    const pasreMonth = month.split("-");
+    const lastDayOfMonth = new Date(pasreMonth[0], pasreMonth[1], 0).getDate();
     const listDayLeave = [];
 
     // get date leave
@@ -247,7 +257,7 @@ class Methods {
       staff.workTimes.forEach((workTime) => {
         if (
           workTime.startTime.getDate() == i &&
-          workTime.startTime.getMonth() + 1 == month
+          workTime.startTime.getMonth() + 1 == pasreMonth
         ) {
           listDayLeave.forEach((day) => {
             return (timesLeave = day.timesLeave);
