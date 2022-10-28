@@ -143,7 +143,7 @@ class StaffController {
       month,
       isStarted: Methods.CheckIsStarted(req.staff),
     });
-    console.log(shortTime);
+    console.log(timeWorked);
   }
 }
 
