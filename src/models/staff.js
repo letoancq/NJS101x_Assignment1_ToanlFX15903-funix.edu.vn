@@ -5,12 +5,22 @@ const Staff = new Schema({
   name: {
     type: String,
   },
+  email: {
+    type: String,
+  },
+  password: {
+    type: String,
+  },
   dOB: {
     type: Date,
   },
   salaryScale: {
     type: Number,
   },
+  role: {
+    type: String,
+  },
+
   startDate: {
     type: Date,
   },
@@ -22,7 +32,7 @@ const Staff = new Schema({
   },
   image: {
     type: String,
-    required: true,
+    // required: true,
   },
   workTimes: [
     {
@@ -30,6 +40,12 @@ const Staff = new Schema({
       workPlace: { type: String },
       working: { type: Boolean },
       endTime: { type: Date },
+    },
+  ],
+  isConfirm: [
+    {
+      confirmed: { type: Boolean },
+      month: { type: Number },
     },
   ],
   leaveInfoList: [
@@ -62,6 +78,7 @@ const Staff = new Schema({
     {
       datePositive: { type: Date },
       dateRecover: { type: Date },
+      isolationDate: { type: Number },
     },
   ],
 });
@@ -108,10 +125,5 @@ Staff.methods.addInject = function (firstInject, secondInject) {
   this.vaccineInfo = updateVaccineInfo;
   return this.save();
 };
-
-Staff.methods.findById = function (id) {
-  return id;
-}
-
 
 module.exports = mongoose.model("Staff", Staff);
