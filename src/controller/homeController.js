@@ -1,10 +1,11 @@
+getIndex = (req, res) => {
+  res.render("home", {
+    path: "/home",
+    pageTitle: "home",
+    isStarted: null,
+    isLoggedIn: req.session.isLoggedIn,
+    role: req.session.staff.role,
+  });
+};
 
-getIndex = (req,res) => {
-        res.render('home', {
-            path: '/home',
-            pageTitle:'home',
-            isStarted: null,
-        });
-    }
-
-module.exports = {getIndex};
+module.exports = { getIndex };

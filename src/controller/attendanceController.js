@@ -6,6 +6,7 @@ class AttendanceController {
   // GET /
   getIndex(req, res) {
     res.render("attendance/index", {
+      isLoggedIn: req.session.isLoggedIn,
       path: "/attendance",
       pageTitle: "Attendance",
       isStarted: Methods.CheckIsStarted(req.staff),
@@ -15,6 +16,7 @@ class AttendanceController {
   // GET /attendance/start
   getStartWork(req, res) {
     res.render("attendance/startForm", {
+      isLoggedIn: req.session.isLoggedIn,
       path: "/attendance",
       pageTitle: "Attendance",
       name: req.staff.name,
@@ -45,6 +47,7 @@ class AttendanceController {
   // GET /attendance/infoStart
   getInfoStart(req, res) {
     res.render("attendance/startInfo", {
+      isLoggedIn: req.session.isLoggedIn,
       path: "/attendance",
       pageTitle: "Attendance",
       isStarted: Methods.CheckIsStarted(req.staff),
@@ -84,6 +87,7 @@ class AttendanceController {
       };
     });
     res.render("attendance/endInfo", {
+      isLoggedIn: req.session.isLoggedIn,
       path: "/attendance",
       pageTitle: "Attendance",
       timeWorked,
@@ -96,6 +100,7 @@ class AttendanceController {
   // GET /attendance/annulLeave
   getLeaveForm(req, res) {
     res.render("attendance/leaveForm", {
+      isLoggedIn: req.session.isLoggedIn,
       path: "/attendance",
       pageTitle: "Attendance",
       annualLeave: req.staff.annualLeave,

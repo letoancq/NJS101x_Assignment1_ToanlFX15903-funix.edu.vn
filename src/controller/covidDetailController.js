@@ -2,6 +2,7 @@ class CovidDetailController {
   // GET /covidDetail
   getIndex(req, res) {
     res.render("covidDetail/index", {
+      isLoggedIn: req.session.isLoggedIn,
       path: "/covid",
       pageTitle: "Covide Detail",
     });
@@ -18,6 +19,7 @@ class CovidDetailController {
       .save()
       .then(() => {
         res.render("covidDetail/index", {
+          isLoggedIn: req.session.isLoggedIn,
           path: "/covid",
           pageTitle: "Covide Detail",
         });
@@ -39,6 +41,7 @@ class CovidDetailController {
       .addInject(firstVaccine, secondVaccine)
       .then(() => {
         res.render("covidDetail/index", {
+          isLoggedIn: req.session.isLoggedIn,
           path: "/covid",
           pageTitle: "Covide Detail",
         });
@@ -51,12 +54,14 @@ class CovidDetailController {
     req.staff.infectCovidInfo = {
       datePositive: req.body.infectDate,
       dateRecover: req.body.recoverDate,
+      isolationDate: req.body.isolationDate,
     };
 
     req.staff
       .save()
       .then(() => {
         res.render("covidDetail/index", {
+          isLoggedIn: req.session.isLoggedIn,
           path: "/covid",
           pageTitle: "Covide Detail",
         });
