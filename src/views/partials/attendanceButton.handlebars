@@ -11,10 +11,11 @@
             <button 
                 class="btn-custom" type="submit">Kết Thúc Làm
             </button>
+            <input type="hidden" name="_csrf" value="{{csrfToken}}" />
             <input type="hidden" name="mode" value="end">   
         </form>
         <form action="/attendance/leaveForm" method="GET">
             <button class="btn-custom" type="submit">Nghỉ Phép</button>
         </form>
     </div>
-</div>
+</div>  

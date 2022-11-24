@@ -1,11 +1,12 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-const covidDetailController = require('../controller/covidDetailController');
+const covidDetailController = require("../controller/covidDetailController");
 
-router.get('/', covidDetailController.getIndex);
-router.post('/temperature', covidDetailController.postTemperature);
-router.post('/injection', covidDetailController.postInjection);
-router.post('/infect', covidDetailController.postInfect);
+router.get("/", covidDetailController.getIndex);
+router.post("/temperature", covidDetailController.postTemperature);
+router.post("/injection", covidDetailController.postInjection);
+router.post("/infect", covidDetailController.postInfect);
+// router.get('/:id', covidDetailController.getPDF);
 
 module.exports = router;

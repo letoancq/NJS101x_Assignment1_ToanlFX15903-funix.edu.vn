@@ -11,6 +11,7 @@
       <li class="navbar__item">
         <a href="/" class="<%= path === '/home' ? 'active' : ''%>"> Home</a>
       </li>
+        {{#if (compare4 role)}}
       <li class="navbar__item">
         <a
           href="/attendance"
@@ -35,6 +36,32 @@
           class="<%= path === '/covid' ? 'active' : ''%>"
         >Covid Detail</a>
       </li>
+        {{else}}
+      <li class="navbar__item">
+        <a
+          href="/manageCovid"
+          class="<%= path === '/manageCovid' ? 'active' : ''%>"
+        >Manage Covid </a>
+      </li>
+      <li class="navbar__item">
+          <a href="/manageStaff" class="<%= path === '/manageStaff' ? 'active' : ''%>">Manage Staff</a>
+      </li>
+      {{/if}}
+    </ul>
+    <ul class="navbar__list" style="margin-left:auto">
+        {{#if isLoggedIn}}
+        <li class="navbar__item">
+          <form action="/auth/logout" method="post">
+              <input type="hidden" name="_csrf" value="{{csrfToken}}">
+              <button type="submit">Log Out</button>
+          </form>
+        </li>
+        {{else}}
+        <li class="navbar__item">
+          <a href="/auth/login" class="<%= path === '/login' ? 'active' : ''%>" >Login</a>
+        </li>
+      
+        {{/if}}
     </ul>
     <button class="side-menu-toggle">Menu</button>
   </nav>

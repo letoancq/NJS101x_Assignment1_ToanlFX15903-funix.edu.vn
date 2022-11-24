@@ -1,5 +1,5 @@
 <div class="info-staff__wrapper">
-  <form action="/staff/infoStaff/edit" method="POST">
+  <form action="/staff/infoStaff/edit" method="POST" enctype="multipart/form-data">
     <h2 class="info-staff__title">Thông Tin Nhân Viên</h2>
     <div class="grid">
       <div>
@@ -55,13 +55,14 @@
         </div>
         <div class="info-staff__item">
           <i class="fas fa-portrait"></i>
-          <input type="text" value="{{image}}" name="image" />
+          <input type="file" name="image" />
         </div>
       </div>
       <div>
-        <img class="info-staff__img" src="{{image}}" alt="avatar" />
+        <img class="info-staff__img" src="/{{image}}" alt="avatar" href="/css/main.css"/>
       </div>
     </div>
-    <button class="info-staff__btn" type="submit">Cập Nhật</button>
+            <input type="hidden" name="_csrf" value="{{csrfToken}}" />
+    <button class="info-staff__btn" type="submit">Chỉnh Sửa</button>
   </form>
 </div>

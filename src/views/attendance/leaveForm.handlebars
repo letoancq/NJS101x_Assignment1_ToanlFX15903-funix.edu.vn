@@ -36,6 +36,7 @@
           <label for="reason">Lý Do</label>
           <textarea id="reason" name="reason" cols="30" rows="10" required></textarea>
         </div>
+         <input type="hidden" name="_csrf" value="{{csrfToken}}" />
         <button class="info-staff__btn" type="submit">Gửi</button>
       </form>
     {{/if}}

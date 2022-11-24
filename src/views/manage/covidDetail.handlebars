@@ -1,0 +1,88 @@
+<h3 style="text-align: center">Họ và tên nhân viên: {{staff.name}}</h3>
+<div class="grid">
+  <div class="referenceStaff__wrapper">
+    <h3 class="referenceStaff__title">Bảng theo dõi nhiệt độ</h3>
+    <table class="referenceStaff__table">
+      <tr>
+        <th>Ngày</th>
+        <th colspan="4">Giờ đo</th>
+        <th colspan="4">Nhiệt độ</th>
+      </tr>
+      {{#each temperature}}
+        <tr>
+          <td>
+            {{date}}
+          </td>
+          <td colspan="4">
+            {{time}}
+          </td>
+          <td colspan="4">
+            {{temperature}}
+          </td>
+        </tr>
+      {{/each}}
+    </table>
+  </div>
+  <div class="referenceStaff__wrapper">
+    <h3 class="referenceStaff__title">Thông tin tiêm chủng</h3>
+    <table class="referenceStaff__table">
+      <tr>
+        <th>Ngày</th>
+        <th colspan="4">Tên Vaccine</th>
+      </tr>
+      {{#each vaccine}}
+        <tr>
+          <td>
+            {{date}}
+          </td>
+          <td colspan="4">
+            {{nameVaccine}}
+          </td>
+        </tr>
+      {{/each}}
+    </table>
+  </div>
+  <div class="referenceStaff__wrapper">
+    <h3 class="referenceStaff__title">Lịch sử nhiễm bệnh</h3>
+    <table class="referenceStaff__table">
+      <tr>
+        <th>Ngày nhiễm</th>
+        <th colspan="4">Ngày khỏi</th>
+        <th colspan="4">Số ngày cách ly</th>
+      </tr>
+      {{#each infect}}
+        <tr>
+          <td>
+            {{datePositive}}
+          </td>
+          <td colspan="4">
+            {{dateRecover}}
+          </td>
+          <td colspan="4">
+            {{isolationDate}}
+          </td>
+        </tr>
+      {{/each}}
+    </table>
+  </div>
+
+  <h3 class="covid-detail__title">Danh sách thông tin nhân viên</h3>
+
+                {{!-- <% staffs.forEach(staff=> {%> --}}
+                    <div class="covid-detail__wrapper">
+                        <h4>Tên nhân viên: {{staff.name}}
+                        </h4>
+                        {{#each temperature}}
+                        <span>Nhiệt độ: {{temperature}}</span>
+                         {{/each}}
+                        {{#each vaccine}}
+                        {{!-- <span>Tên vaccine mũi một: {{nameVaccine}}</span> --}}
+                        {{!-- <span>Ngày tiêm:  {{date}}</span> --}}
+                        <span>Tên vaccine: {{nameVaccine}}</span>
+                        <span>Ngày tiêm:  {{date}}</span>
+                         {{/each}}
+                        <a class="btn" href="/manageCovid/covidDetail/{{staff._id}}">Xuất Trang PDF</a>
+                    </div>
+                    {{!-- <%})%> --}}
+            </div>
+</div>

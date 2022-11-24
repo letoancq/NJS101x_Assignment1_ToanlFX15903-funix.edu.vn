@@ -1,0 +1,19 @@
+<div class="centered">
+  <div class="wrapper">
+    <form
+      class="form-control form-manage"
+      action="/manageCovid/covidDetail"
+      method="POST"
+    >
+      <label for="choose-staff">Chọn nhân viên</label>
+      <select name="staff" id="choose-staff">
+        <option value="none">Chọn nhân viên</option>
+        <option value="{{id}}">
+          {{name}}
+        </option>
+      </select>
+      <input type="hidden" name="_csrf" value="{{csrfToken}}" />
+      <button type="submit" class="btn">Chọn</button>
+    </form>
+  </div>
+</div>
