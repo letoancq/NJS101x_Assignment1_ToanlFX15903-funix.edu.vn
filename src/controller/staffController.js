@@ -35,6 +35,12 @@ class StaffController {
   // GET /staff/reference
   getReference(req, res) {
     const timeWorked = Methods.calculateTimeWorked(req.staff);
+    const shortTime = Methods.getShortTime(
+      req.body.month,
+      req.staff,
+      Methods.calculateTimeWorked(req.staff),
+      Methods.overTime(Methods.calculateTimeWorked(req.staff))
+    );
     const workInDay = timeWorked.workTimeInDay.map((work) => {
       const endTime = work.endTime ? dateformat("hh:mm", work.endTime) : "--";
       return {
@@ -46,7 +52,12 @@ class StaffController {
       };
     });
 
-    const overTime = Methods.overTime(Methods.calculateTimeWorked(req.staff));
+    const overTime = Methods.getOverTime(
+      req.body.month,
+      req.staff,
+      Methods.calculateTimeWorked(req.staff),
+      Methods.overTime(Methods.calculateTimeWorked(req.staff))
+    );
     const salary = Methods.getSalary(
       req.body.month,
       req.staff,
@@ -60,6 +71,7 @@ class StaffController {
         reason: leaveInfoList.reason,
       };
     });
+
     res.render("staff/reference", {
       isLoggedIn: req.session.isLoggedIn,
       path: "/staff/reference",
@@ -69,6 +81,7 @@ class StaffController {
       timeWorked,
       dayLeave, // arry of info annual leave
       salary,
+      shortTime,
       overTime,
       isStarted: Methods.CheckIsStarted(req.staff),
     });
@@ -77,6 +90,13 @@ class StaffController {
   // POST /staff/reference
   postReference(req, res) {
     const timeWorked = Methods.calculateTimeWorked(req.staff);
+    const shortTime = Methods.getShortTime(
+      req.body.month,
+      req.staff,
+      Methods.calculateTimeWorked(req.staff),
+      Methods.overTime(Methods.calculateTimeWorked(req.staff))
+    );
+
     const workInDay = timeWorked.workTimeInDay.map((work) => {
       return {
         startDay: dateformat("dd/MM/yyyy", work.startTime),
@@ -86,7 +106,12 @@ class StaffController {
       };
     });
 
-    const overTime = Methods.overTime(Methods.calculateTimeWorked(req.staff));
+    const overTime = Methods.getOverTime(
+      req.body.month,
+      req.staff,
+      Methods.calculateTimeWorked(req.staff),
+      Methods.overTime(Methods.calculateTimeWorked(req.staff))
+    );
     const salary = Methods.getSalary(
       req.body.month,
       req.staff,
@@ -101,8 +126,8 @@ class StaffController {
       };
     });
     const month = req.body.month;
+    console.log(overTime);
     res.render("staff/reference", {
-      isLoggedIn: req.session.isLoggedIn,
       path: "/staff/reference",
       pageTitle: "Reference staff",
       isStarted: null,
@@ -111,9 +136,14 @@ class StaffController {
       dayLeave, // arry of info annual leave
       salary,
       overTime,
+      // overHour: overTime.overHour,
+      // overMin: overTime.overMin,
+      salaryScale: req.staff.salaryScale,
+      shortTime,
       month,
       isStarted: Methods.CheckIsStarted(req.staff),
     });
+    console.log(timeWorked);
   }
 }
 
