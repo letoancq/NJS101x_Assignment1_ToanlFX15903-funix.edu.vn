@@ -94,7 +94,7 @@ class StaffController {
       req.body.month,
       req.staff,
       Methods.calculateTimeWorked(req.staff),
-      Methods.overTime(Methods.calculateTimeWorked(req.staff))
+      Methods.shortTime(Methods.calculateTimeWorked(req.staff))
     );
 
     const workInDay = timeWorked.workTimeInDay.map((work) => {
@@ -126,7 +126,6 @@ class StaffController {
       };
     });
     const month = req.body.month;
-    console.log(overTime);
     res.render("staff/reference", {
       path: "/staff/reference",
       pageTitle: "Reference staff",
@@ -136,14 +135,11 @@ class StaffController {
       dayLeave, // arry of info annual leave
       salary,
       overTime,
-      // overHour: overTime.overHour,
-      // overMin: overTime.overMin,
       salaryScale: req.staff.salaryScale,
       shortTime,
       month,
       isStarted: Methods.CheckIsStarted(req.staff),
     });
-    console.log(timeWorked);
   }
 }
 
